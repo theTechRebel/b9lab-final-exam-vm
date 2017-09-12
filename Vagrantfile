@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--cpus", cpus]
     end
 
-    #dapps.vm.provision "file", source: "dotscreenrc", destination: "~/.screenrc"
+    dapps.vm.provision "file", source: "dotscreenrc", destination: "~/.screenrc"
 
     #dapps.vm.provision :shell, path: "bootstrap.sh"
   end
