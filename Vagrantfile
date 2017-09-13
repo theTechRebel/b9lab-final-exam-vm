@@ -46,4 +46,6 @@ Vagrant.configure("2") do |config|
 
     #dapps.vm.provision :shell, path: "bootstrap.sh"
   end
+  config.ssh.password = "vagrant"
+  config.ssh.insert_key = true
 end
