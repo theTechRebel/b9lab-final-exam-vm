@@ -2,6 +2,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "dapps" do |dapps|
     dapps.vm.box = "b9lab/eth13"
     dapps.vm.box_url = [
+      "https://dst5e0zgbst3t.cloudfront.net/truffle-vagrant-eth-13-package.box",
       "https://b9-academy-assets.s3.amazonaws.com/9-Exam/boxes/truffle-vagrant-eth-13-package.box",
       "http://ipfs.b9lab.com:8080/ipfs/QmU7jS738UsWFDjJZ9STPcDBxPzJipJ1kYLSRSVcQ37FGh",
       "http://ipfs.io/ipfs/QmU7jS738UsWFDjJZ9STPcDBxPzJipJ1kYLSRSVcQ37FGh"
