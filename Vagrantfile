@@ -1,14 +1,14 @@
 Vagrant.configure("2") do |config|
   config.vm.define "dapps" do |dapps|
-    dapps.vm.box = "b9lab/eth13"
+    dapps.vm.box = "b9lab/eth17"
     dapps.vm.box_url = [
-      "https://dst5e0zgbst3t.cloudfront.net/truffle-vagrant-eth-13-package.box",
-      "https://b9-academy-assets.s3.amazonaws.com/9-Exam/boxes/truffle-vagrant-eth-13-package.box",
-      "http://localhost:8080/ipfs/QmU7jS738UsWFDjJZ9STPcDBxPzJipJ1kYLSRSVcQ37FGh",
-      "http://ipfs.b9lab.com:8080/ipfs/QmU7jS738UsWFDjJZ9STPcDBxPzJipJ1kYLSRSVcQ37FGh",
-      "http://ipfs.io/ipfs/QmU7jS738UsWFDjJZ9STPcDBxPzJipJ1kYLSRSVcQ37FGh"
+      "https://dst5e0zgbst3t.cloudfront.net/truffle-vagrant-eth-17-package.box",
+      "https://b9-academy-assets.s3.amazonaws.com/9-Exam/boxes/truffle-vagrant-eth-17-package.box",
+      "http://localhost:8080/ipfs/QmYDsJkGAdhAwSGTNeg5HKZBtk5UzdzNpaZ8uJqhWaZeWp",
+      "http://ipfs.b9lab.com:8080/ipfs/QmYDsJkGAdhAwSGTNeg5HKZBtk5UzdzNpaZ8uJqhWaZeWp",
+      "http://ipfs.io/ipfs/QmYDsJkGAdhAwSGTNeg5HKZBtk5UzdzNpaZ8uJqhWaZeWp"
     ]
-    config.vm.box_download_checksum = "d0a91725d46d2b6e2c177581045e4c42530506f475947e21b971943d145cc6ab"
+    config.vm.box_download_checksum = "67a9fd332c5f72ddd81cb53505b5e3e9a6dd1612bcea6ad34a9f3d8bbce7e4ec"
     config.vm.box_download_checksum_type = "sha256"
     # Change from "~/DAPPS" to an existing, and non-encrypted, folder on your host if the mount fails
     dapps.vm.synced_folder "~/DAPPS", "/home/vagrant/DAPPS", nfs: true, nfs_udp: false, create: true
@@ -29,19 +29,20 @@ Vagrant.configure("2") do |config|
         cpus = `sysctl -n hw.ncpu`.to_i
         # sysctl returns Bytes and we need to convert to MB
         # mem = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 2
-        mem = 3072
+        mem = 3572
       elsif host =~ /linux/
         cpus = `nproc`.to_i
         # meminfo shows KB and we need to convert to MB
         # mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
-        mem = 3072
+        mem = 3572
       else # sorry Windows folks, I can't help you
         cpus = 2
-        mem = 3072
+        mem = 3572
       end
 
       v.customize ["modifyvm", :id, "--memory", mem]
       v.customize ["modifyvm", :id, "--cpus", cpus]
+      v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000]
     end
 
     dapps.vm.provision "file", source: "dotscreenrc", destination: "~/.screenrc"
