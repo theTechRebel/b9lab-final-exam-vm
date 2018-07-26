@@ -1,14 +1,14 @@
 Vagrant.configure("2") do |config|
   config.vm.define "dapps" do |dapps|
-    dapps.vm.box = "b9lab/eth20"
+    dapps.vm.box = "b9lab/eth24"
     dapps.vm.box_url = [
-     "https://dst5e0zgbst3t.cloudfront.net/truffle-vagrant-eth-20-package.box",
-     "https://b9-academy-assets.s3.amazonaws.com/9-Exam/boxes/truffle-vagrant-eth-20-package.box",
-     "http://localhost:8080/ipfs/Qmcvx4zifnnW77cjkQPB498cCtyN7jKvhUSydBPaSJ92wp",
-     "http://ipfs.b9lab.com:8080/ipfs/Qmcvx4zifnnW77cjkQPB498cCtyN7jKvhUSydBPaSJ92wp",
-     "http://ipfs.io/ipfs/Qmcvx4zifnnW77cjkQPB498cCtyN7jKvhUSydBPaSJ92wp"
+      "https://dst5e0zgbst3t.cloudfront.net/truffle-vagrant-eth-24-package.box",
+      "https://b9-academy-assets.s3.amazonaws.com/9-Exam/boxes/truffle-vagrant-eth-24-package.box",
+      "http://localhost:8080/ipfs/QmdNBStJSt6zePcFzYyhTJXjfx23kZu15WKzwY15FrtaCp",
+      "http://ipfs.b9lab.com:8080/ipfs/QmdNBStJSt6zePcFzYyhTJXjfx23kZu15WKzwY15FrtaCp",
+      "http://ipfs.io/ipfs/QmdNBStJSt6zePcFzYyhTJXjfx23kZu15WKzwY15FrtaCp"
     ]
-    config.vm.box_download_checksum = "a62a1133314df4b6e3afc3d92b1208a59733298ba39343a378ca34d6ccb980b4"
+    config.vm.box_download_checksum = "3b44cbd1f85d4af1c04dca9fdc8b5dc354158dee1547b453a4bac9aea495df46"
     config.vm.box_download_checksum_type = "sha256"
     # Change from "~/DAPPS" to an existing, and non-encrypted, folder on your host if the mount fails
     dapps.vm.synced_folder "~/DAPPS", "/home/vagrant/DAPPS", nfs: true, nfs_udp: false, create: true
