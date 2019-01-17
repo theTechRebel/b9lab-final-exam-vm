@@ -1,17 +1,17 @@
 Vagrant.configure("2") do |config|
   config.vm.define "dapps" do |dapps|
-    dapps.vm.box = "b9lab/eth24"
+    dapps.vm.box = "b9lab/eth30"
     dapps.vm.box_url = [
-      "https://dst5e0zgbst3t.cloudfront.net/truffle-vagrant-eth-24-package.box",
-      "https://b9-academy-assets.s3.amazonaws.com/9-Exam/boxes/truffle-vagrant-eth-24-package.box",
-      "http://localhost:8080/ipfs/QmdNBStJSt6zePcFzYyhTJXjfx23kZu15WKzwY15FrtaCp",
-      "http://ipfs.b9lab.com:8080/ipfs/QmdNBStJSt6zePcFzYyhTJXjfx23kZu15WKzwY15FrtaCp",
-      "http://ipfs.io/ipfs/QmdNBStJSt6zePcFzYyhTJXjfx23kZu15WKzwY15FrtaCp"
+      "https://dst5e0zgbst3t.cloudfront.net/truffle-vagrant-eth-30-package.box",
+      "https://b9-academy-assets.s3.amazonaws.com/9-Exam/boxes/truffle-vagrant-eth-30-package.box",
+      "http://localhost:8080/ipfs/Qmcv1KeDzTfnSBdLDSApkvEpKS43EcVSiSzaJCqTz3X8jM",
+      "http://ipfs.b9lab.com:8080/ipfs/Qmcv1KeDzTfnSBdLDSApkvEpKS43EcVSiSzaJCqTz3X8jM",
+      "http://ipfs.io/ipfs/Qmcv1KeDzTfnSBdLDSApkvEpKS43EcVSiSzaJCqTz3X8jM"
     ]
-    config.vm.box_download_checksum = "3b44cbd1f85d4af1c04dca9fdc8b5dc354158dee1547b453a4bac9aea495df46"
+    config.vm.box_download_checksum = "826de04fc5ea8d1cb94ac9136c0086a58305f2c141dbd7b7132ec337899bbd5f"
     config.vm.box_download_checksum_type = "sha256"
     # Change from "~/DAPPS" to an existing, and non-encrypted, folder on your host if the mount fails
-    dapps.vm.synced_folder "~/DAPPS", "/home/vagrant/DAPPS", nfs: true, nfs_udp: false, create: true
+    dapps.vm.synced_folder "~/DAPPS", "/home/ubuntu/DAPPS", nfs: false, nfs_udp: false, create: true
     dapps.vm.network "private_network", type: "dhcp"
     dapps.vm.network :forwarded_port, guest: 8000, host: 8000
     dapps.vm.network :forwarded_port, guest: 8545, host: 8545
@@ -49,6 +49,7 @@ Vagrant.configure("2") do |config|
 
     #dapps.vm.provision :shell, path: "bootstrap.sh"
   end
-  config.ssh.password = "vagrant"
-  config.ssh.insert_key = true
+  # config.ssh.username = "ubuntu"
+  # config.ssh.password = "cdce84730f0efe3c8bdf3638"
+  # config.ssh.insert_key = true
 end
