@@ -1,17 +1,17 @@
 Vagrant.configure("2") do |config|
   config.vm.define "dapps" do |dapps|
-    dapps.vm.box = "b9lab/eth30"
+    dapps.vm.box = "b9lab/eth_2019_03_21"
     dapps.vm.box_url = [
-      "https://dst5e0zgbst3t.cloudfront.net/truffle-vagrant-eth-30-package.box",
-      "https://b9-academy-assets.s3.amazonaws.com/9-Exam/boxes/truffle-vagrant-eth-30-package.box",
-      "http://localhost:8080/ipfs/Qmcv1KeDzTfnSBdLDSApkvEpKS43EcVSiSzaJCqTz3X8jM",
-      "http://ipfs.b9lab.com:8080/ipfs/Qmcv1KeDzTfnSBdLDSApkvEpKS43EcVSiSzaJCqTz3X8jM",
-      "http://ipfs.io/ipfs/Qmcv1KeDzTfnSBdLDSApkvEpKS43EcVSiSzaJCqTz3X8jM"
+      "https://d3mgdk0lg98lr1.cloudfront.net/truffle-vagrant-package-2019-03-21.box",
+      "https://b9-academy-assets.s3.amazonaws.com/public/boxes/truffle-vagrant-package-2019-03-21.box",
+      "http://localhost:8080/ipfs/QmQupMizFJqaLBM8RjMzQxfxVuNYuFiipjK3F5dQz5aKJL",
+      "http://ipfs.b9lab.com:8080/ipfs/QmQupMizFJqaLBM8RjMzQxfxVuNYuFiipjK3F5dQz5aKJL",
+      "http://ipfs.io/ipfs/QmQupMizFJqaLBM8RjMzQxfxVuNYuFiipjK3F5dQz5aKJL"
     ]
-    config.vm.box_download_checksum = "826de04fc5ea8d1cb94ac9136c0086a58305f2c141dbd7b7132ec337899bbd5f"
+    config.vm.box_download_checksum = "fccd0fff1dcf6b10c11df8571cbbbc9e2b6b88567dfd13afb3600c39c24edd8e"
     config.vm.box_download_checksum_type = "sha256"
     # Change from "~/DAPPS" to an existing, and non-encrypted, folder on your host if the mount fails
-    dapps.vm.synced_folder "~/DAPPS", "/home/ubuntu/DAPPS", nfs: false, nfs_udp: false, create: true
+    dapps.vm.synced_folder "~/DAPPS", "/home/vagrant/DAPPS", nfs: false, nfs_udp: false, create: true
     dapps.vm.network "private_network", type: "dhcp"
     dapps.vm.network :forwarded_port, guest: 8000, host: 8000
     dapps.vm.network :forwarded_port, guest: 8545, host: 8545
@@ -47,9 +47,9 @@ Vagrant.configure("2") do |config|
 
     dapps.vm.provision "file", source: "dotscreenrc", destination: "~/.screenrc"
 
-    #dapps.vm.provision :shell, path: "bootstrap.sh"
+    # dapps.vm.provision :shell, path: "bootstrap.sh"
   end
   # config.ssh.username = "ubuntu"
   # config.ssh.password = "cdce84730f0efe3c8bdf3638"
-  # config.ssh.insert_key = true
+  # config.ssh.insert_key = false
 end
