@@ -42,6 +42,7 @@ Vagrant.configure("2") do |config|
 
       v.customize ["modifyvm", :id, "--memory", mem]
       v.customize ["modifyvm", :id, "--cpus", cpus]
+      v.customize ["modifyvm", :id, "--uartmode1", "disconnected"]
       v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000]
     end
 
