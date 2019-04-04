@@ -13,13 +13,13 @@ Vagrant.configure("2") do |config|
     # Change from "~/DAPPS" to an existing, and non-encrypted, folder on your host if the mount fails
     dapps.vm.synced_folder "~/DAPPS", "/home/vagrant/DAPPS", nfs: false, nfs_udp: false, create: true
     dapps.vm.network "private_network", type: "dhcp"
-    dapps.vm.network :forwarded_port, guest: 8000, host: 8000
-    dapps.vm.network :forwarded_port, guest: 8545, host: 8545
+    dapps.vm.network :forwarded_port, guest: 8000, host: 8000, host_ip: "127.0.0.1"
+    dapps.vm.network :forwarded_port, guest: 8545, host: 8545, host_ip: "127.0.0.1"
 
     # IPFS
-    dapps.vm.network :forwarded_port, guest: 4001, host: 4001
-    dapps.vm.network :forwarded_port, guest: 5001, host: 5001
-    dapps.vm.network :forwarded_port, guest: 8080, host: 8080
+    dapps.vm.network :forwarded_port, guest: 4001, host: 4001, host_ip: "127.0.0.1"
+    dapps.vm.network :forwarded_port, guest: 5001, host: 5001, host_ip: "127.0.0.1"
+    dapps.vm.network :forwarded_port, guest: 8080, host: 8080, host_ip: "127.0.0.1"
 
     dapps.vm.provider "virtualbox" do |v|
       host = RbConfig::CONFIG['host_os']
@@ -42,6 +42,7 @@ Vagrant.configure("2") do |config|
 
       v.customize ["modifyvm", :id, "--memory", mem]
       v.customize ["modifyvm", :id, "--cpus", cpus]
+      v.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
       v.customize ["modifyvm", :id, "--uartmode1", "file", File.join(Dir.pwd, "ubuntu-xenial-16.04-cloudimg-console.log")]
       v.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000]
     end
