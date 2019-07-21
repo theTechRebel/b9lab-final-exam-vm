@@ -3,8 +3,11 @@ B9Lab certified ethereum developer course virtual machine environment
 
 ## Requirements
 Install Virtual Box & Vagrant via Chocolately if on windows
+
 https://www.virtualbox.org/
+
 https://www.vagrantup.com/downloads.html
+
 https://chocolatey.org/packages?q=vagrant
 
 ## clone the repository
